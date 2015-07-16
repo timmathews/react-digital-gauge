@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.3.0",
-    "react": "^0.13.0"
+    "react": "^0.13.0",
+    "react-sparkline": "~1.0.1"
   }
 }
