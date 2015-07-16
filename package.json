@@ -1,32 +1,18 @@
 {
-  "name": "react-hot-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "name": "react-digital-gauge",
+  "version": "0.1.0",
+  "description": "Simple digital gauge built in React",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/timmathews/react-digital-gauge"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Tim Mathews <tim@signalk.org> (http://github.com/timmathews)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
-  },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/timmathews/react-digital-gauge",
   "devDependencies": {
     "babel-core": "^5.4.7",
     "babel-eslint": "^3.1.9",
