@@ -37,8 +37,6 @@ export default class Gauge extends Component {
     },
     label: {
       fontSize: '1.75em',
-//      position: 'absolute',
-//      bottom: 5,
       width: '100%',
       maxWidth: 200,
       textAlign: 'center',
@@ -56,18 +54,18 @@ export default class Gauge extends Component {
     super(props);
     this.state = {reverse: false};
   }
-  
+
   componentDidMount() {
     this.setState({width: React.findDOMNode(this).offsetWidth})
   }
-  
+
   componentWillReceiveProps(nextProps) {
     let history = this.state.history || [];
-    
+
     if(history.length > 100) history.shift();
-    
+
     history.push(nextProps.value);
-    
+
     this.setState({history:history});
   }
 
@@ -82,21 +80,19 @@ export default class Gauge extends Component {
   renderObverse() {
     const {label, value, units} = this.props;
     const {style} = Gauge;
-    
+
     var width = this.state.width - 12;
-    
+
     if(this.isMounted) {
       width = React.findDOMNode(this).offsetWidth;
     }
-    
-    console.log(this.state.history);
-    
 
     return (
       <div>
-        <h1 style={style.value}>{Math.floor(value*1000)/1000}</h1>
+        <h1 style={style.value}>{value.toFixed(2)}</h1>
         <div style={style.units}>{units}</div>
-        <Sparkline strokeColor={style.container.color} height={40} width={width} data={this.state.history} />
+        <Sparkline strokeColor={style.container.color} height={40}
+          width={width} data={this.state.history} />
         <div style={style.label}>{label}</div>
       </div>
     );
@@ -107,12 +103,11 @@ export default class Gauge extends Component {
   }
 
   render() {
-
     const {reverse} = this.state;
     const {style} = Gauge;
 
     return (
-      <div style={style.container} ref='container'>
+      <div style={style.container}>
         {!reverse && this.renderObverse()}
         {reverse && this.renderReverse()}
         <span style={style.button} onClick={()=>this.handleClick()}>
