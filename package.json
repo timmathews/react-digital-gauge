@@ -4,8 +4,10 @@
   "description": "Simple digital gauge built in React",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "compile": "babel src/Gauge.js --out-file dist/Gauge.js"
   },
+  "main": "dist/Gauge.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/timmathews/react-digital-gauge"
