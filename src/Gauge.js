@@ -52,23 +52,24 @@ export default class Gauge extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {reverse: false};
-    this.mounted = false;
+    this.state = {reverse: false, showTrendline: true};
   }
 
   componentDidMount() {
     this.setState({width: React.findDOMNode(this).offsetWidth});
-    this.mounted = true;
   }
 
   componentWillReceiveProps(nextProps) {
-    let history = this.state.history || [];
+    let history = this.state.history || new Array(100).fill(0);
 
     if(history.length > 100) history.shift();
 
     history.push(nextProps.value);
 
-    this.setState({history:history});
+    this.setState({
+      history: history,
+      width: React.findDOMNode(this).offsetWidth
+    });
   }
 
   handleClick() {
@@ -79,29 +80,46 @@ export default class Gauge extends Component {
     }
   }
 
+  setShowTrendline() {
+    this.setState({showTrendline:!this.state.showTrendline});
+  }
+
+  renderSparkline() {
+    const {style} = Gauge;
+    const {history, showTrendline, width} = this.state;
+
+    if(showTrendline) {
+      return <Sparkline strokeColor={style.container.color} height={40}
+          width={width - 12} data={history} />
+    } else {
+      return null;
+    }
+  }
+
   renderObverse() {
     const {label, value, units} = this.props;
     const {style} = Gauge;
-
-    var width = this.state.width - 12;
-
-    if(this.mounted) {
-      width = React.findDOMNode(this).offsetWidth;
-    }
 
     return (
       <div>
         <h1 style={style.value}>{value.toFixed(2)}</h1>
         <div style={style.units}>{units}</div>
-        <Sparkline strokeColor={style.container.color} height={40}
-          width={width} data={this.state.history} />
+        {this.renderSparkline()}
         <div style={style.label}>{label}</div>
       </div>
     );
   }
 
   renderReverse() {
-    return <h1>Reverse</h1>;
+    const {style} = Gauge;
+    const {showTrendline} = this.state;
+
+    return (
+      <div>
+        <h1 style={style.label}>Settings</h1>
+        <label for='cbx'><input type='checkbox' name='cbx' checked={showTrendline} onChange={() => this.setShowTrendline()} /> Show Trendline</label>
+      </div>
+    );
   }
 
   render() {
