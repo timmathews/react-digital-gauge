@@ -53,10 +53,12 @@ export default class Gauge extends Component {
   constructor(props) {
     super(props);
     this.state = {reverse: false};
+    this.mounted = false;
   }
 
   componentDidMount() {
-    this.setState({width: React.findDOMNode(this).offsetWidth})
+    this.setState({width: React.findDOMNode(this).offsetWidth});
+    this.mounted = true;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -83,7 +85,7 @@ export default class Gauge extends Component {
 
     var width = this.state.width - 12;
 
-    if(this.isMounted) {
+    if(this.mounted) {
       width = React.findDOMNode(this).offsetWidth;
     }
 
