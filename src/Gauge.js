@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Sparkline from 'react-sparkline';
+require('font-awesome-webpack');
 
 export default class Gauge extends Component {
   static propTypes = {

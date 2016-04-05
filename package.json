@@ -25,6 +25,7 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
+    "font-awesome-webpack": "0.0.4",
     "react-sparkline": "~1.0.1"
   },
   "peerDependencies": {
