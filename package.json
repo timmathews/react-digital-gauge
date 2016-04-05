@@ -35,6 +35,7 @@
   },
   "peerDependencies": {
     "react": "*",
+    "react-dom": "*",
     "font-awesome": "*"
   }
 }
