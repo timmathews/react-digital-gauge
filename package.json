@@ -1,6 +1,6 @@
 {
   "name": "react-digital-gauge",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple digital gauge built in React",
   "scripts": {
     "start": "node server.js",
@@ -16,11 +16,14 @@
   "license": "MIT",
   "homepage": "https://github.com/timmathews/react-digital-gauge",
   "devDependencies": {
-    "babel-core": "^5.4.7",
-    "babel-eslint": "^3.1.9",
-    "babel-loader": "^5.1.2",
+    "babel-core": "^6.0.0",
+    "babel-eslint": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
     "eslint": "^2.6.0",
-    "eslint-plugin-react": "^2.3.0",
+    "eslint-plugin-react": "^4.0.0",
     "font-awesome": "^4.5.0",
     "less": "^2.6.1",
     "react": "^0.14.8",
@@ -34,7 +37,7 @@
     "lodash": "^4.8.2",
     "radium": "^0.17.1",
     "react-resizable": "^1.3.0",
-    "react-sparkline": "~1.0.1"
+    "react-sparkline": "^2.0.0"
   },
   "peerDependencies": {
     "react": "*",
