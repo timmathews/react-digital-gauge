@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import {Resizable, ResizableBox} from 'react-resizable';
 import 'style!css!react-resizable/css/styles.css';
 import Sparkline from 'react-sparkline';
@@ -10,6 +11,11 @@ export default class Gauge extends Component {
     label: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
     units: PropTypes.string,
+    palette: PropTypes.shape({
+      valueColor: React.PropTypes.string,
+      chartColor: React.PropTypes.string,
+      labelColor: React.PropTypes.string
+    }),
     topLabel: PropTypes.bool
   };
 
@@ -48,6 +54,7 @@ export default class Gauge extends Component {
       fontSize: '1.25em',
       width: '100%',
       textAlign: 'center',
+      paddingLeft: 18,
       position: 'absolute',
       bottom: 10,
       left: 0
@@ -72,10 +79,6 @@ export default class Gauge extends Component {
     this.state = {reverse: false, showTrendline: true, height: 160, width: 200};
   }
 
-  componentDidMount() {
-    this.setState({width: React.findDOMNode(this).offsetWidth});
-  }
-
   componentWillReceiveProps(nextProps) {
     let history = this.state.history || new Array(100).fill(0);
 
@@ -83,10 +86,7 @@ export default class Gauge extends Component {
 
     history.push(nextProps.value);
 
-    this.setState({
-      history: history,
-      width: React.findDOMNode(this).offsetWidth
-    });
+    this.setState({history: history});
   }
 
   handleClick = () => {
@@ -113,7 +113,7 @@ export default class Gauge extends Component {
       return <Sparkline
         strokeColor={'#C66'}
         strokeWidth={'0.5px'}
-        height={height - 100}
+        height={height - 105}
         width={width - 12}
         data={history} />;
     } else {

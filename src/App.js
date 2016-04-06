@@ -10,7 +10,7 @@ export default class App extends Component {
       labels: ['Speed over Ground', 'Apparent Wind Speed', 'True Wind Speed', 'Speed through Water',
                'House Battery Voltage', 'Shore Power Voltage', 'Shore Power Current', 'House Battery Current',
                'Refrigerator Temperature', 'Freezer Temperature'],
-      units: ['kn', 'kn', 'kn', 'kn', 'VDC', 'VAC', 'A', 'A', '°F', '°F']
+      units: ['kts', 'kts', 'kts', 'kts', 'VDC', 'VAC', 'A', 'A', '°F', '°F']
     };
 
     setInterval(this.updateState, 500);
@@ -18,8 +18,9 @@ export default class App extends Component {
 
   updateState = () => {
     let values = [];
+    let state = this.state.values;
     for(let i = 0; i < 10; ++i) {
-      values.push(Math.random()*100);
+      values.push(getRandomWalk(90, 135, state[i] * 10, 10) / 10);
     }
     this.setState({values: values});
   }
@@ -40,4 +41,20 @@ export default class App extends Component {
       </div>
     );
   }
+}
+
+function getRandomWalk(min, max, last, delta) {
+  var x = getRandomInt(0, delta);
+  var d = getRandomInt(0, 1);
+  if(d == 1 && last + x < max || last - x < min) {
+    return last + x;
+  } else if(d == 0 && last - x > min || last + x > max) {
+    return last - x;
+  } else {
+    return last;
+  }
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
